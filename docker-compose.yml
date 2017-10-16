@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+
+#  elasticsearch:
+#    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.3
+#    container_name: elasticsearch
+#    ports:
+#      - 9200:9200
+#    networks:
+#      - net
+#    environment:
+#      - "TZ=Europe/Paris"
+
+#  rabbitmq:
+#    image: rabbitmq
+#    container_name: rabbitmq
+#    ports:
+#      - 5672:5672
+#      - 25672:25672
+#    networks:
+#      - net
+
+  web:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - .:/code
+      - ./docker/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    ports:
+      - 80:80
+    networks:
+      - net
+
+  php:
+      image: php:7-fpm
+      volumes:
+          - .:/code
+
+# Bridge network to do the link between all containers
+networks:
+  net:

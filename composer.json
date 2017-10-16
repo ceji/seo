@@ -1,0 +1,7 @@
+{
+    "require": {
+        "seostats/seostats": "dev-master",
+        "paquettg/php-html-parser": "^1.7",
+        "spatie/crawler": "^2.5"
+    }
+}
