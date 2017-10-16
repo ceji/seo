@@ -23,7 +23,7 @@ services:
 
   web:
     image: nginx:latest
-    container_name: nginx
+    container_name: web
     volumes:
       - .:/code
       - ./docker/nginx.conf:/etc/nginx/conf.d/nginx.conf
@@ -31,11 +31,17 @@ services:
       - 80:80
     networks:
       - net
+    depends_on:
+      - php
 
   php:
       image: php:7-fpm
+      container_name: php
       volumes:
-          - .:/code
+        - .:/code
+      networks:
+        - net
+
 
 # Bridge network to do the link between all containers
 networks:
